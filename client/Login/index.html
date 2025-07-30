@@ -3,41 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudentPortal</title>
+    <link rel="icon" type="image/x-icon" href="/assert/favicon.ico/favicon.png">
+    <title>StudentPortal - Login</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <main class="container">
         <header>
-            <a href="/Login" class="logo">
+            <a href="/login" class="logo">
                 <span class="logo-icon">S</span>
                 <span>StudentPortal</span>
             </a>
             <nav class="nav-links">
-                <a href="/home" class="nav-link">Home</a>
+                <a href="/" class="nav-link">Home</a>
             </nav>
         </header>
-        <!-- main body part -->
         <section class="hero">
             <h1>Welcome Back, Student!</h1>
             <p>Access your courses, assignments, and resources with your student account.</p>
             <div class="auth-container">
                 <div class="auth-card">
                     <h2>Login</h2>
-                    <form>
+                    <form id="loginForm">
                         <div class="form-group">
-                            <label for="login-email">Email</label>
-                            <input type="email" id="login-email" class="form-control" placeholder="Enter your email" required>
+                            <label for="username">Email</label>
+                            <input type="email" id="username" class="form-control" placeholder="Enter your email" required>
                         </div>
                         <div class="form-group">
-                            <label for="login-password">Password</label>
-                            <input type="password" id="login-password" class="form-control" placeholder="Enter your password" required>
+                            <label for="password">Password</label>
+                            <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
                             <a href="#" class="forgot-password">Forgot password?</a>
                         </div>
+                        <div id="error-message" style="color: red; margin-top: 0.5rem; display: none;"></div>
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
                     </form>
                     
-                    <div class="divider">
+                    <!-- <div class="divider">
                         <span class="divider-text">OR</span>
                     </div>
                     
@@ -49,18 +50,18 @@
                         <button class="social-btn">
                             <span class="social-icon">M</span>
                             Microsoft
-                        </button>
+                        </button> -->
                     </div>
                     <div class="auth-footer">
-                        Dont't have an accout? <a href="/SignUp">Sign Up here</a>
+                        Don't have an account? <a href="/signup">Sign Up here</a>
                     </div>
                 </div>
             </div>
-
         </section>
         <footer>
             <p>&copy; 2025 StudentPortal. All rights reserved.</p>
         </footer>
     </main>
+    <script src="/js/auth.js"></script>
 </body>
 </html>

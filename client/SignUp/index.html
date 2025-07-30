@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudentPortal</title>
+    <link rel="icon" type="image/x-icon" href="/assert/favicon.ico/favicon.png">
+    <title>StudentPortal - Sign Up</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <div class="container">
     <header>
-        <a href="/SignUp" class="logo">
+        <a href="/signup" class="logo">
             <span class="logo-icon">S</span>
             <span>StudentPortal</span>
         </a>
@@ -21,7 +22,7 @@
         <div class="auth-container">
             <div class="auth-card">
                 <h2>Sign Up</h2>
-                <form>
+                <form id="signupForm">
                     <div class="form-group">
                         <label for="signup-name">Full Name</label>
                         <input type="text" id="signup-name" class="form-control" placeholder="Enter your full name" required>
@@ -31,6 +32,14 @@
                         <input type="email" id="signup-email" class="form-control" placeholder="Enter your email" required>
                     </div>
                     <div class="form-group">
+                        <label for="signup-age">Age</label>
+                        <input type="number" id="signup-age" class="form-control" placeholder="Enter your age" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-courses">Courses</label>
+                        <input type="text" id="signup-courses" class="form-control" placeholder="Enter courses (comma-separated)" required>
+                    </div>
+                    <div class="form-group">
                         <label for="signup-password">Password</label>
                         <input type="password" id="signup-password" class="form-control" placeholder="Create a password" required>
                     </div>
@@ -38,11 +47,12 @@
                         <label for="signup-confirm">Confirm Password</label>
                         <input type="password" id="signup-confirm" class="form-control" placeholder="Confirm your password" required>
                     </div>
+                    <div id="signup-error" style="color: red; margin-top: 0.5rem; display: none;"></div>
                     <button type="submit" class="btn btn-primary btn-block">Create Account</button>
                 </form>
                 
                 <div class="auth-footer">
-                    Already have an account? <a href="/Login">Login here</a>
+                    Already have an account? <a href="/login">Login here</a>
                 </div>
             </div>
         </div>
@@ -51,5 +61,6 @@
 <footer>
     <p>&copy; 2025 StudentPortal. All rights reserved.</p>
 </footer>
+<script src="/js/signup.js"></script>
 </body>
 </html>
