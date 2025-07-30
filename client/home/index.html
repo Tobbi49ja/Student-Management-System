@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="/home" class="logo">
+          <span class="logo-icon">S</span>
+          <span>Student Management System</span>
+        </a>
+        <nav class="nav-links">
+          <a href="/Login" class="nav-link">Login</a>
+          <a href="/SignUp" class="nav-link">Sign Up</a>
+        </nav>
+      </header>
+      <section class="hero">
+        <div class="auth-container">
+          <div class="auth-card">
+            <!-- Add Student Form -->
+            <div class="form-group">
+              <input
+                type="text"
+                id="student-name"
+                placeholder="Student Name"
+                class="form-control"
+              />
+              <input
+                type="number"
+                id="student-age"
+                placeholder="Student Age"
+                class="form-control"
+              />
+              <input
+                type="text"
+                id="student-courses"
+                placeholder="Courses (comma separated)"
+                class="form-control"
+              />
+              <input
+                type="password"
+                id="student-password"
+                placeholder="Password"
+                class="form-control"
+              />
+              <button id="add-student" class="btn btn-primary btn-block">
+                Add Student
+              </button>
+            </div>
+
+            <h2>Students List</h2>
+            <ul id="students-list"></ul>
+
+            <button id="view-students" class="btn btn-primary btn-block">
+              View Students
+            </button>
+            <button id="clear-all" class="btn btn-primary btn-block">
+              Clear All Students
+            </button>
+          </div>
+        </div>
+      </section>
+      <script src="/js/app.js"></script>
+    </div>
+    <footer>
+      <p>&copy; 2025 StudentPortal. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
