@@ -5,5 +5,4 @@ yarn.lock
 .env
 .DS_Store
 .vscode/
-*.
-.idea/
+*.log

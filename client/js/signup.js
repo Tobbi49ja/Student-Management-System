@@ -2,7 +2,8 @@ document.getElementById('signupForm').addEventListener('submit', async function(
   event.preventDefault();
 
   const name = document.getElementById('signup-name').value;
-  const username = document.getElementById('signup-email').value;
+  const username = document.getElementById('signup-username').value;
+  const email = document.getElementById('signup-email').value;
   const age = document.getElementById('signup-age').value;
   const courses = document.getElementById('signup-courses').value;
   const password = document.getElementById('signup-password').value;
@@ -19,7 +20,7 @@ document.getElementById('signupForm').addEventListener('submit', async function(
     const response = await fetch('http://localhost:5000/students', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, age, courses: courses.split(',').map(c => c.trim()), username, password })
+      body: JSON.stringify({ name, username, email, age, courses: courses.split(',').map(c => c.trim()), password })
     });
 
     const data = await response.json();

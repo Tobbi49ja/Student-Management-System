@@ -30,12 +30,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             <p>${currentUser.name}</p>
           </div>
           <div class="form-group">
-            <label>Age:</label>
-            <p>${currentUser.age}</p>
+            <label>Username:</label>
+            <p>${currentUser.username}</p>
           </div>
           <div class="form-group">
             <label>Email:</label>
-            <p>${currentUser.username}</p>
+            <p>${currentUser.email}</p>
+          </div>
+          <div class="form-group">
+            <label>Age:</label>
+            <p>${currentUser.age}</p>
           </div>
           <div class="form-group">
             <label>Courses:</label>

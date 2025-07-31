@@ -8,6 +8,7 @@ const studentSchema = new mongoose.Schema({
   age: Number,
   courses: [String],
   username: { type: String, unique: true, required: true },
+  email: { type: String, unique: true, required: true },
   password: { type: String, required: true }
 });
 
@@ -15,15 +16,16 @@ const studentSchema = new mongoose.Schema({
 const Student = mongoose.model('Student', studentSchema);
 
 exports.createStudent = async (req, res) => {
-  const { name, age, courses, username, password } = req.body;
+  const { name, age, courses, username, email, password } = req.body;
   try {
-    const existingStudent = await Student.findOne({ username });
+    const existingStudent = await Student.findOne({ $or: [{ username }, { email }] });
     if (existingStudent) {
-      return res.status(400).json({ message: 'Email already in use' });
+      const message = existingStudent.username === username ? 'Username already in use' : 'Email already in use';
+      return res.status(400).json({ message });
     }
     
     const hashedPassword = await bcrypt.hash(password, 10);
-    const student = new Student({ name, age, courses, username, password: hashedPassword });
+    const student = new Student({ name, age, courses, username, email, password: hashedPassword });
     await student.save();
     res.status(201).json(student);
   } catch (error) {
@@ -61,12 +63,12 @@ exports.deleteStudent = async (req, res) => {
 };
 
 exports.loginStudent = async (req, res) => {
-  const { username, password } = req.body;
-  if (!username || !password) {
-    return res.status(400).json({ message: 'Username and password are required' });
+  const { identifier, password } = req.body;
+  if (!identifier || !password) {
+    return res.status(400).json({ message: 'Username or email and password are required' });
   }
   try {
-    const student = await Student.findOne({ username });
+    const student = await Student.findOne({ $or: [{ username: identifier }, { email: identifier }] });
     if (!student) {
       return res.status(401).json({ message: 'Incorrect credentials' });
     }
