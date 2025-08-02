@@ -7,4 +7,3 @@ yarn.lock
 .vscode/
 *.log
 migrate.js
-

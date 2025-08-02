@@ -45,16 +45,21 @@
                     </div>
                     <div class="form-group">
                         <label for="signup-password">Password</label>
-                        <input type="password" id="signup-password" class="form-control" placeholder="Create a password" required>
+                        <div class="password-wrapper">
+                            <input type="password" id="signup-password" class="form-control" placeholder="Create a password" required>
+                            <span class="toggle-password" data-target="signup-password">👁️</span>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="signup-confirm">Confirm Password</label>
-                        <input type="password" id="signup-confirm" class="form-control" placeholder="Confirm your password" required>
+                        <div class="password-wrapper">
+                            <input type="password" id="signup-confirm" class="form-control" placeholder="Confirm your password" required>
+                            <span class="toggle-password" data-target="signup-confirm">👁️</span>
+                        </div>
                     </div>
                     <div id="signup-error" style="color: red; margin-top: 0.5rem; display: none;"></div>
                     <button type="submit" class="btn btn-primary btn-block">Create Account</button>
                 </form>
-                
                 <div class="auth-footer">
                     Already have an account? <a href="/login">Login here</a>
                 </div>

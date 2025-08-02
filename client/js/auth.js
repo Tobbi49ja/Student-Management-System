@@ -30,3 +30,14 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     errorMessage.textContent = 'Error logging in. Please try again.';
   }
 });
+
+// Password toggle functionality
+document.querySelectorAll('.toggle-password').forEach(toggle => {
+  toggle.addEventListener('click', function() {
+    const targetId = this.getAttribute('data-target');
+    const input = document.getElementById(targetId);
+    const isPassword = input.type === 'password';
+    input.type = isPassword ? 'text' : 'password';
+    this.textContent = isPassword ? '🙈' : '👁️';
+  });
+});

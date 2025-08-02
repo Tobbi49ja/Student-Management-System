@@ -31,8 +31,10 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
-                            <a href="#" class="forgot-password">Forgot password?</a>
+                            <div class="password-wrapper">
+                                <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                                <span class="toggle-password" data-target="password">👁️</span>
+                            </div>
                         </div>
                         <div id="error-message" style="color: red; margin-top: 0.5rem; display: none;"></div>
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
