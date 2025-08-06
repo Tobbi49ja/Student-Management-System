@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   try {
     // Fetch protected profile data
-    const response = await fetch('http://localhost:5000/students', {
+    const response = await fetch('http://localhost:8000/students', {
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`

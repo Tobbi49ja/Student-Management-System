@@ -17,7 +17,7 @@ document.getElementById('signupForm').addEventListener('submit', async function(
   }
 
   try {
-    const response = await fetch('http://localhost:5000/students', {
+    const response = await fetch('http://localhost:8000/students', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, username, email, age, courses: courses.split(',').map(c => c.trim()), password })
