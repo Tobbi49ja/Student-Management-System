@@ -16,7 +16,7 @@
 }
 
 body {
-  background-color: var(--darker);
+  background-color: var(--light);
   color: var(--light);
   min-height: 100vh;
   display: flex;
@@ -28,6 +28,53 @@ body {
   margin: 0 auto;
   padding: 2rem;
   width: 100%;
+
+}
+.homebg{
+    background-image: url('/assert/Pics/HomeBg.jpg');
+}
+.homebg{
+  position: relative;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.homebg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  filter: blur(8px) brightness(0.7);
+  z-index: 0;
+}
+
+.homebg > * {
+  position: relative;
+  z-index: 1;
+}
+.loginbg{
+  background: url(/assert/Pics/loginbg.jpg);
+    position: relative;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+.loginbg::before{
+    content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  filter: blur(8px) brightness(0.7);
+  z-index: 0;
+}
+.loginbg > *{
+    position: relative;
+  z-index: 1;
 }
 
 header {
@@ -35,9 +82,10 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 0;
-  margin-bottom: 2rem;
 }
-
+.color-chng{
+  color: whitesmoke;
+}
 .logo {
   font-size: 1.8rem;
   font-weight: 700;
@@ -66,14 +114,14 @@ header {
 }
 
 .nav-link {
-  color: var(--gray);
+  color: aliceblue;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   transition: color 0.3s;
 }
 
 .nav-link:hover {
-  color: var(--primary);
+  color: #007BFF;
 }
 
 .red {
@@ -117,27 +165,24 @@ header {
   background-color: var(--primary);
   color: white;
 }
-
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
+ 
 }
 
 .hero h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
-  background: linear-gradient(to right, var(--primary), #a855f7);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .hero p {
   font-size: 1.2rem;
-  color: var(--gray);
+  color: aliceblue;
   max-width: 600px;
   margin-bottom: 2rem;
 }
@@ -155,7 +200,7 @@ header {
 }
 
 .auth-card {
-  background-color: var(--dark);
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 1rem;
   padding: 2rem;
   width: 100%;
@@ -190,7 +235,7 @@ header {
   padding: 0.8rem 1rem;
   border-radius: 0.5rem;
   border: 1px solid #334155;
-  background-color: #1e293b;
+  background-color: rgba(0, 0, 0, 0.3);
   color: var(--light);
   font-size: 1rem;
   transition: border-color 0.3s;
@@ -290,7 +335,6 @@ header {
 .auth-footer {
   text-align: center;
   margin-top: 1.5rem;
-  color: var(--gray);
   font-size: 0.9rem;
 }
 
