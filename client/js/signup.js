@@ -1,14 +1,34 @@
-document.getElementById('signupForm').addEventListener('submit', async function(event) {
+document.getElementById('signupFormPart2').addEventListener('submit', async function(event) {
   event.preventDefault();
 
-  const name = document.getElementById('signup-name').value;
-  const username = document.getElementById('signup-username').value;
-  const email = document.getElementById('signup-email').value;
+  const nameInput = document.getElementById('signup-name');
+  const usernameInput = document.getElementById('signup-username');
+  const emailInput = document.getElementById('signup-email');
   const age = document.getElementById('signup-age').value;
-  const courses = document.getElementById('signup-courses').value;
+  const course = document.getElementById('signup-courses').value;
   const password = document.getElementById('signup-password').value;
   const confirmPassword = document.getElementById('signup-confirm').value;
   const errorMessage = document.getElementById('signup-error');
+
+  // Get sanitized values
+  const name = nameInput.value.trim();
+  const username = usernameInput.value.trim();
+  const email = emailInput.value.trim().toLowerCase();
+
+  // Validate inputs
+  if (!name || !username || !email || !age || !course || !password || !confirmPassword) {
+    errorMessage.style.display = 'block';
+    errorMessage.textContent = 'Please fill all fields';
+    return;
+  }
+
+  // Validate email format
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+  if (!emailRegex.test(email)) {
+    errorMessage.style.display = 'block';
+    errorMessage.textContent = 'Email must end with @gmail.com';
+    return;
+  }
 
   if (password !== confirmPassword) {
     errorMessage.style.display = 'block';
@@ -20,7 +40,7 @@ document.getElementById('signupForm').addEventListener('submit', async function(
     const response = await fetch('http://localhost:8000/students', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, username, email, age, courses: courses.split(',').map(c => c.trim()), password })
+      body: JSON.stringify({ name, username, email, age, courses: [course], password })
     });
 
     const data = await response.json();
@@ -30,12 +50,33 @@ document.getElementById('signupForm').addEventListener('submit', async function(
       window.location.href = '/login';
     } else {
       errorMessage.style.display = 'block';
-      errorMessage.textContent = data.message || 'Error creating account';
+      errorMessage.textContent = data.message === 'Email already exists' 
+        ? 'This email is already registered. Please use a different email.'
+        : data.message || 'Error creating account';
     }
   } catch (error) {
     console.error('Error signing up:', error);
     errorMessage.style.display = 'block';
     errorMessage.textContent = 'Error signing up. Please try again.';
+  }
+});
+
+// Capitalize first letter of each word in Full Name
+document.getElementById('signup-name').addEventListener('input', function() {
+  const input = this.value.trim();
+  if (input) {
+    this.value = input
+      .split(' ')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+  }
+});
+
+// Ensure username starts with lowercase
+document.getElementById('signup-username').addEventListener('input', function() {
+  const input = this.value.trim();
+  if (input) {
+    this.value = input.charAt(0).toLowerCase() + input.slice(1);
   }
 });
 

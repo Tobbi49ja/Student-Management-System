@@ -3,105 +3,958 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Portal</title>
-
+    <title>Student Profile</title>
+    <style>
+        body {
+            background-color: #f9fafb;
+            min-height: 100vh;
+            font-family: sans-serif;
+        }
+        .container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        h1 {
+            font-size: 1.875rem;
+            font-weight: bold;
+            color: #4b5563;
+        }
+        p {
+            color: #6b7280;
+        }
+        .flex {
+            display: flex;
+        }
+        .items-center {
+            align-items: center;
+        }
+        .space-x-4 > *:not(:last-child) {
+            margin-right: 1rem;
+        }
+        button {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.2s;
+        }
+        .bg-indigo-100 {
+            background-color: #e0e7ff;
+        }
+        .text-indigo-700 {
+            color: #4338ca;
+        }
+        .hover\:bg-indigo-200:hover {
+            background-color: #c7d2fe;
+        }
+        .bg-gray-200 {
+            background-color: #e5e7eb;
+        }
+        .text-gray-700 {
+            color: #374151;
+        }
+        .hover\:bg-gray-300:hover {
+            background-color: #d1d5db;
+        }
+        .hidden {
+            display: none;
+        }
+        .md\:inline {
+            display: inline;
+        }
+        @media (min-width: 768px) {
+            .md\:inline {
+                display: inline;
+            }
+            .hidden.md\:inline {
+                display: inline;
+            }
+        }
+        .flex-col {
+            flex-direction: column;
+        }
+        .lg\:flex-row {
+            flex-direction: row;
+        }
+        @media (min-width: 1024px) {
+            .lg\:flex-row {
+                flex-direction: row;
+            }
+        }
+        .gap-8 {
+            gap: 2rem;
+        }
+        .w-full {
+            width: 100%;
+        }
+        .lg\:w-1\/3 {
+            width: 33.333333%;
+        }
+        @media (min-width: 1024px) {
+            .lg\:w-1\/3 {
+                width: 33.333333%;
+            }
+            .lg\:w-2\/3 {
+                width: 66.666667%;
+            }
+        }
+        .bg-white {
+            background-color: #ffffff;
+        }
+        .rounded-xl {
+            border-radius: 0.75rem;
+        }
+        .shadow-md {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .p-6 {
+            padding: 1.5rem;
+        }
+        .sticky {
+            position: sticky;
+        }
+        .top-6 {
+            top: 1.5rem;
+        }
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+        .profile-pic-upload {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .profile-pic-upload:hover {
+            transform: scale(1.05);
+        }
+        .profile-pic-upload input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        .profile-pic-upload .edit-icon {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border-radius: 50%;
+            padding: 5px;
+            display: none;
+        }
+        .profile-pic-upload:hover .edit-icon {
+            display: block;
+        }
+        .bg-indigo-100 {
+            background-color: #e0e7ff;
+        }
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+        .justify-center {
+            justify-content: center;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+        .text-gray-800 {
+            color: #1f2937;
+        }
+        .text-gray-600 {
+            color: #4b5563;
+        }
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+        .space-x-2 > *:not(:last-child) {
+            margin-right: 0.5rem;
+        }
+        .text-xs {
+            font-size: 0.75rem;
+        }
+        .px-2 {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+        .py-1 {
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+        }
+        .rounded {
+            border-radius: 0.25rem;
+        }
+        .bg-indigo-100 {
+            background-color: #e0e7ff;
+        }
+        .text-indigo-800 {
+            color: #3730a3;
+        }
+        .bg-purple-100 {
+            background-color: #f3e8ff;
+        }
+        .text-purple-800 {
+            color: #6b21a8;
+        }
+        .space-y-4 > *:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+        .text-lg {
+            font-size: 1.125rem;
+        }
+        .font-semibold {
+            font-weight: 600;
+        }
+        .text-gray-700 {
+            color: #374151;
+        }
+        .space-y-3 > *:not(:last-child) {
+            margin-bottom: 0.75rem;
+        }
+        .justify-between {
+            justify-content: space-between;
+        }
+        .font-medium {
+            font-weight: 500;
+        }
+        .text-green-600 {
+            color: #16a34a;
+        }
+        .mb-1 {
+            margin-bottom: 0.25rem;
+        }
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background-color: #e0e0e0;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            background-color: #4f46e5;
+            transition: width 0.5s ease;
+        }
+        .grid {
+            display: grid;
+        }
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .gap-2 {
+            gap: 0.5rem;
+        }
+        .bg-gray-100 {
+            background-color: #f3f4f6;
+        }
+        .hover\:bg-gray-200:hover {
+            background-color: #e5e7eb;
+        }
+        .p-3 {
+            padding: 0.75rem;
+        }
+        .rounded-lg {
+            border-radius: 0.5rem;
+        }
+        .transition {
+            transition: all 0.3s;
+        }
+        .text-indigo-600 {
+            color: #4f46e5;
+        }
+        .space-y-8 > *:not(:last-child) {
+            margin-bottom: 2rem;
+        }
+        .bg-gradient-to-r {
+            background: linear-gradient(to right, #6366f1, #a855f7);
+        }
+        .from-indigo-500 {
+            /* part of gradient */
+        }
+        .to-purple-600 {
+            /* part of gradient */
+        }
+        .p-6 {
+            padding: 1.5rem;
+        }
+        .text-white {
+            color: #ffffff;
+        }
+        .text-2xl {
+            font-size: 1.5rem;
+        }
+        .font-bold {
+            font-weight: 700;
+        }
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+        .bg-white {
+            background-color: #ffffff;
+        }
+        .text-indigo-600 {
+            color: #4f46e5;
+        }
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+        .py-2 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        .rounded-lg {
+            border-radius: 0.5rem;
+        }
+        .font-medium {
+            font-weight: 500;
+        }
+        .hover\:bg-opacity-90:hover {
+            background-opacity: 0.9;
+        }
+        .justify-between {
+            justify-content: space-between;
+        }
+        .items-center {
+            align-items: center;
+        }
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+        .text-xl {
+            font-size: 1.25rem;
+        }
+        .font-bold {
+            font-weight: 700;
+        }
+        .text-gray-800 {
+            color: #1f2937;
+        }
+        .text-indigo-600 {
+            color: #4f46e5;
+        }
+        .hover\:text-indigo-800:hover {
+            color: #3730a3;
+        }
+        .grid {
+            display: grid;
+        }
+        .md\:grid-cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        @media (min-width: 768px) {
+            .md\:grid-cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        .gap-4 {
+            gap: 1rem;
+        }
+        .space-y-4 > *:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+        .border-l-4 {
+            border-left-width: 4px;
+        }
+        .border-indigo-500 {
+            border-color: #6366f1;
+        }
+        .pl-4 {
+            padding-left: 1rem;
+        }
+        .py-2 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+        .bg-indigo-50 {
+            background-color: #eef2ff;
+        }
+        .rounded-r {
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+        }
+        .items-start {
+            align-items: flex-start;
+        }
+        .text-sm {
+            font-size: 0.875rem;
+        }
+        .text-gray-600 {
+            color: #4b5563;
+        }
+        .bg-indigo-100 {
+            background-color: #e0e7ff;
+        }
+        .text-indigo-800 {
+            color: #3730a3;
+        }
+        .text-xs {
+            font-size: 0.75rem;
+        }
+        .px-2 {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+        .py-1 {
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+        }
+        .rounded {
+            border-radius: 0.25rem;
+        }
+        .border-yellow-500 {
+            border-color: #eab308;
+        }
+        .bg-yellow-50 {
+            background-color: #fefce8;
+        }
+        .bg-yellow-100 {
+            background-color: #fef08a;
+        }
+        .text-yellow-800 {
+            color: #854d0e;
+        }
+        .border-green-500 {
+            border-color: #22c55e;
+        }
+        .bg-green-50 {
+            background-color: #f0fdf4;
+        }
+        .bg-green-100 {
+            background-color: #dcfce7;
+        }
+        .text-green-800 {
+            color: #166534;
+        }
+        .space-y-4 > *:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+        .space-x-3 > *:not(:last-child) {
+            margin-right: 0.75rem;
+        }
+        .bg-indigo-100 {
+            background-color: #e0e7ff;
+        }
+        .text-indigo-600 {
+            color: #4f46e5;
+        }
+        .p-2 {
+            padding: 0.5rem;
+        }
+        .rounded-full {
+            border-radius: 9999px;
+        }
+        .font-medium {
+            font-weight: 500;
+        }
+        .text-sm {
+            font-size: 0.875rem;
+        }
+        .text-gray-600 {
+            color: #4b5563;
+        }
+        .bg-green-100 {
+            background-color: #dcfce7;
+        }
+        .text-green-600 {
+            color: #16a34a;
+        }
+        .bg-blue-100 {
+            background-color: #dbeafe;
+        }
+        .text-blue-600 {
+            color: #2563eb;
+        }
+        .course-card {
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .flex {
+            display: flex;
+        }
+        .justify-between {
+            justify-content: space-between;
+        }
+        .items-start {
+            align-items: flex-start;
+        }
+        .mb-2 {
+            margin-bottom: 0.5rem;
+        }
+        .font-bold {
+            font-weight: 700;
+        }
+        .text-lg {
+            font-size: 1.125rem;
+        }
+        .text-gray-800 {
+            color: #1f2937;
+        }
+        .text-xs {
+            font-size: 0.75rem;
+        }
+        .px-2 {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+        .py-1 {
+            padding-top: 0.25rem;
+            padding-bottom: 0.25rem;
+        }
+        .rounded-full {
+            border-radius: 9999px;
+        }
+        .bg-indigo-100 {
+            background-color: #e0e7ff;
+        }
+        .text-indigo-800 {
+            color: #3730a3;
+        }
+        .bg-purple-100 {
+            background-color: #f3e8ff;
+        }
+        .text-purple-800 {
+            color: #6b21a8;
+        }
+        .bg-blue-100 {
+            background-color: #dbeafe;
+        }
+        .text-blue-800 {
+            color: #1e40af;
+        }
+        .bg-green-100 {
+            background-color: #dcfce7;
+        }
+        .text-green-800 {
+            color: #166534;
+        }
+        .text-gray-700 {
+            color: #374151;
+        }
+        .mb-1 {
+            margin-bottom: 0.25rem;
+        }
+        .text-sm {
+            font-size: 0.875rem;
+        }
+        .text-gray-500 {
+            color: #6b7280;
+        }
+        .mb-3 {
+            margin-bottom: 0.75rem;
+        }
+        .progress-bar {
+            background-color: #e5e7eb;
+            border-radius: 9999px;
+            height: 0.5rem;
+        }
+        .progress-fill {
+            border-radius: 9999px;
+            height: 0.5rem;
+        }
+        .bg-indigo-500 {
+            background-color: #6366f1;
+        }
+        .bg-purple-500 {
+            background-color: #a855f7;
+        }
+        .bg-blue-500 {
+            background-color: #3b82f6;
+        }
+        .bg-green-500 {
+            background-color: #22c55e;
+        }
+        .mt-3 {
+            margin-top: 0.75rem;
+        }
+        .text-indigo-600 {
+            color: #4f46e5;
+        }
+        .hover\:text-indigo-800:hover {
+            color: #3730a3;
+        }
+        .text-purple-600 {
+            color: #9333ea;
+        }
+        .hover\:text-purple-800:hover {
+            color: #6b21a8;
+        }
+        .text-blue-600 {
+            color: #2563eb;
+        }
+        .hover\:text-blue-800:hover {
+            color: #1e40af;
+        }
+        .text-green-600 {
+            color: #16a34a;
+        }
+        .hover\:text-green-800:hover {
+            color: #166534;
+        }
+        .mr-2 {
+            margin-right: 0.5rem;
+        }
+        .mr-1 {
+            margin-right: 0.25rem;
+        }
+        /* Icon replacements - using text placeholders since no Font Awesome */
+        /* For example, instead of <i class="fas fa-bell"></i>, use text like [Bell] */
+        /* Adjust as needed, or use CSS content for pseudo-elements if desired */
+        /* For simplicity, replacing with text in HTML */
+    </style>
 </head>
 <body>
     <div class="container">
+        <!-- Header -->
         <header>
-            <a href="#" class="logo">
-                <span class="logo-icon">S</span>
-                <span>StudentPortal</span>
-            </a>
-            <nav class="nav-links">
-                <a href="#" class="nav-link">Home</a>
-                <a href="#" class="nav-link">Courses</a>
-                <a href="#" class="nav-link">About</a>
-                <a href="#" class="nav-link">Contact</a>
-            </nav>
+            <div>
+                <h1>EduConnect</h1>
+                <p>Your learning dashboard</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="bg-indigo-100 text-indigo-700 hover:bg-indigo-200 transition">
+                    [Bell]
+                    <span class="hidden md:inline">Notifications</span>
+                </button>
+                <button id="logoutBtn" class="bg-gray-200 text-gray-700 hover:bg-gray-300 transition">
+                    [Logout]
+                    <span class="hidden md:inline">Logout</span>
+                </button>
+            </div>
         </header>
 
-        <section class="hero">
-            <h1>Welcome Back, Student!</h1>
-            <p>Access your courses, assignments, and resources with your student account.</p>
-            
-            <div class="auth-container">
-                <div class="auth-card">
-                    <h2>Login</h2>
-                    <form>
-                        <div class="form-group">
-                            <label for="login-email">Email</label>
-                            <input type="email" id="login-email" class="form-control" placeholder="Enter your email" required>
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Left Sidebar - Profile Info -->
+            <div class="w-full lg:w-1/3">
+                <div class="bg-white rounded-xl shadow-md p-6 sticky top-6">
+                    <!-- Profile Picture Upload -->
+                    <div class="flex flex-col items-center mb-6">
+                        <div class="profile-pic-upload bg-indigo-100 mb-4 flex items-center justify-center">
+                            <img id="profileImage" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Profile">
+                            <input type="file" id="profileUpload" accept="image/*">
+                            <div class="edit-icon">
+                                [Camera]
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="login-password">Password</label>
-                            <input type="password" id="login-password" class="form-control" placeholder="Enter your password" required>
-                            <a href="#" class="forgot-password">Forgot password?</a>
+                        <h2 id="username" class="text-2xl font-bold text-gray-800">Sarah Johnson</h2>
+                        <p id="studentId" class="text-gray-600 mb-2">ID: STU20230045</p>
+                        <div class="flex space-x-2">
+                            <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">Computer Science</span>
+                            <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded">Junior</span>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">Login</button>
-                    </form>
-                    
-                    <div class="divider">
-                        <span class="divider-text">OR</span>
                     </div>
-                    
-                    <div class="social-login">
-                        <button class="social-btn">
-                            <span class="social-icon">G</span>
-                            Google
-                        </button>
-                        <button class="social-btn">
-                            <span class="social-icon">M</span>
-                            Microsoft
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="auth-card">
-                    <h2>Sign Up</h2>
-                    <form>
-                        <div class="form-group">
-                            <label for="signup-name">Full Name</label>
-                            <input type="text" id="signup-name" class="form-control" placeholder="Enter your full name" required>
+
+                    <!-- Personal Information -->
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-700 mb-2">Personal Information</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Email:</span>
+                                    <span id="email" class="font-medium">sarah.j@university.edu</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Age:</span>
+                                    <span id="age" class="font-medium">21</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">Joined:</span>
+                                    <span class="font-medium">Sep 2021</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-600">GPA:</span>
+                                    <span class="font-medium text-green-600">3.78</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="signup-email">Email</label>
-                            <input type="email" id="signup-email" class="form-control" placeholder="Enter your email" required>
+
+                        <!-- Academic Progress -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-700 mb-2">Academic Progress</h3>
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-gray-600">Degree Completion</span>
+                                        <span class="font-medium">68%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 68%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-gray-600">Current Semester</span>
+                                        <span class="font-medium">42%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 42%"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="signup-password">Password</label>
-                            <input type="password" id="signup-password" class="form-control" placeholder="Create a password" required>
+
+                        <!-- Quick Links -->
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-700 mb-2">Quick Links</h3>
+                            <div class="grid grid-cols-2 gap-2">
+                                <a href="#" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg flex items-center transition">
+                                    [Book]
+                                    <span>Library</span>
+                                </a>
+                                <a href="#" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg flex items-center transition">
+                                    [Calendar]
+                                    <span>Schedule</span>
+                                </a>
+                                <a href="#" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg flex items-center transition">
+                                    [Invoice]
+                                    <span>Finances</span>
+                                </a>
+                                <a href="#" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg flex items-center transition">
+                                    [Graduation]
+                                    <span>Graduation</span>
+                                </a>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="signup-confirm">Confirm Password</label>
-                            <input type="password" id="signup-confirm" class="form-control" placeholder="Confirm your password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-block">Create Account</button>
-                    </form>
-                    
-                    <div class="auth-footer">
-                        Already have an account? <a href="#" id="switch-to-login">Login here</a>
                     </div>
                 </div>
             </div>
-        </section>
+
+            <!-- Main Content -->
+            <div class="w-full lg:w-2/3 space-y-8">
+                <!-- Welcome Banner -->
+                <div class="bg-gradient-to-r rounded-xl p-6 text-white">
+                    <h2 class="text-2xl font-bold mb-2">Welcome back, Sarah!</h2>
+                    <p class="mb-4">You have 3 upcoming assignments and 1 new message from your instructor.</p>
+                    <button class="bg-white text-indigo-600 px-4 py-2 rounded-lg font-medium transition">
+                        View Notifications
+                    </button>
+                </div>
+
+                <!-- Current Courses -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold text-gray-800">Current Courses</h2>
+                        <button class="text-indigo-600 hover:text-indigo-800 transition">
+                            [+] Add Course
+                        </button>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 gap-4" id="coursesContainer">
+                        <!-- Course cards will be added here by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Upcoming Assignments -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6">Upcoming Assignments</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="border-l-4 border-indigo-500 pl-4 py-2 bg-indigo-50 rounded-r">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-medium">Data Structures Project</h3>
+                                    <p class="text-sm text-gray-600">CS 301 - Due in 3 days</p>
+                                </div>
+                                <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">High Priority</span>
+                            </div>
+                        </div>
+                        <div class="border-l-4 border-yellow-500 pl-4 py-2 bg-yellow-50 rounded-r">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-medium">Database Design Assignment</h3>
+                                    <p class="text-sm text-gray-600">CS 305 - Due in 5 days</p>
+                                </div>
+                                <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">Medium Priority</span>
+                            </div>
+                        </div>
+                        <div class="border-l-4 border-green-500 pl-4 py-2 bg-green-50 rounded-r">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <h3 class="font-medium">Linear Algebra Quiz</h3>
+                                    <p class="text-sm text-gray-600">MATH 210 - Due in 7 days</p>
+                                </div>
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Low Priority</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-6">Recent Activity</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-3">
+                            <div class="bg-indigo-100 text-indigo-600 p-2 rounded-full">
+                                [Book Open]
+                            </div>
+                            <div>
+                                <p class="font-medium">Submitted "Algorithms Assignment 3"</p>
+                                <p class="text-sm text-gray-600">Yesterday at 4:23 PM</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="bg-green-100 text-green-600 p-2 rounded-full">
+                                [Check]
+                            </div>
+                            <div>
+                                <p class="font-medium">Received grade for "Database Midterm" - 92%</p>
+                                <p class="text-sm text-gray-600">2 days ago</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <div class="bg-blue-100 text-blue-600 p-2 rounded-full">
+                                [Comment]
+                            </div>
+                            <div>
+                                <p class="font-medium">New message from Prof. Smith about project</p>
+                                <p class="text-sm text-gray-600">3 days ago</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <footer>
-        <p>&copy; 2023 StudentPortal. All rights reserved.</p>
-    </footer>
-
     <script>
-        // Simple script to toggle between login and signup (for demo purposes)
-        document.getElementById('switch-to-login').addEventListener('click', function(e) {
-            e.preventDefault();
-            const loginCard = document.querySelector('.auth-card:first-child');
-            const signupCard = document.querySelector('.auth-card:last-child');
+        // Sample student data (in a real app, this would come from a database)
+        const studentData = {
+            username: "Sarah Johnson",
+            email: "sarah.j@university.edu",
+            age: 21,
+            studentId: "STU20230045",
+            major: "Computer Science",
+            year: "Junior",
+            gpa: 3.78,
+            joinDate: "Sep 2021",
+            profileImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80",
+            courses: [
+                {
+                    code: "CS 301",
+                    name: "Data Structures",
+                    instructor: "Prof. Smith",
+                    progress: 65,
+                    color: "indigo"
+                },
+                {
+                    code: "CS 305",
+                    name: "Database Systems",
+                    instructor: "Prof. Johnson",
+                    progress: 42,
+                    color: "purple"
+                },
+                {
+                    code: "MATH 210",
+                    name: "Linear Algebra",
+                    instructor: "Prof. Lee",
+                    progress: 78,
+                    color: "blue"
+                },
+                {
+                    code: "ENG 202",
+                    name: "Technical Writing",
+                    instructor: "Prof. Davis",
+                    progress: 90,
+                    color: "green"
+                }
+            ]
+        };
+
+        // Function to populate the profile page with student data
+        function populateProfile() {
+            document.getElementById('username').textContent = studentData.username;
+            document.getElementById('email').textContent = studentData.email;
+            document.getElementById('age').textContent = studentData.age;
+            document.getElementById('studentId').textContent = `ID: ${studentData.studentId}`;
+            document.getElementById('profileImage').src = studentData.profileImage;
+
+            // Populate courses
+            const coursesContainer = document.getElementById('coursesContainer');
+            coursesContainer.innerHTML = '';
             
-            loginCard.style.display = 'block';
-            signupCard.style.display = 'none';
-            
-            // In a real app, you would navigate to the login page or show/hide forms
+            studentData.courses.forEach(course => {
+                const courseCard = document.createElement('div');
+                courseCard.className = `course-card`;
+                
+                courseCard.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <h3 class="font-bold text-lg text-gray-800">${course.code}</h3>
+                        <span class="text-xs px-2 py-1 rounded-full bg-${course.color}-100 text-${course.color}-800">${course.progress}%</span>
+                    </div>
+                    <h4 class="text-gray-700 mb-1">${course.name}</h4>
+                    <p class="text-sm text-gray-500 mb-3">${course.instructor}</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill bg-${course.color}-500" style="width: ${course.progress}%"></div>
+                    </div>
+                    <div class="flex justify-between mt-3">
+                        <a href="#" class="text-sm text-${course.color}-600 hover:text-${course.color}-800 transition">Materials</a>
+                        <a href="#" class="text-sm text-${course.color}-600 hover:text-${course.color}-800 transition">Assignments</a>
+                        <a href="#" class="text-sm text-${course.color}-600 hover:text-${course.color}-800 transition">Grades</a>
+                    </div>
+                `;
+                
+                coursesContainer.appendChild(courseCard);
+            });
+        }
+
+        // Profile picture upload functionality
+        document.getElementById('profileUpload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profileImage').src = e.target.result;
+                    // In a real app, you would upload this to your server here
+                    studentData.profileImage = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Logout button functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            // In a real app, this would redirect to logout endpoint
+            alert('Logging out...');
+            // window.location.href = '/logout';
+        });
+
+        // Initialize the page when it loads
+        document.addEventListener('DOMContentLoaded', function() {
+            populateProfile();
         });
     </script>
 </body>

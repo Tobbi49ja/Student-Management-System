@@ -1,75 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/assert/favicon.ico/favicon.png">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="/assert/favicon.ico/favicon.png" />
     <title>StudentPortal - Sign Up</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body class="loginbg">
-<div class="container">
-    <header>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="loginbg">
+    <div class="container">
+      <header>
         <a href="/signup" class="logo">
-            <span class="logo-icon">S</span>
-            <span class="color-chng">StudentPortal</span>
+          <span class="logo-icon">S</span>
+          <span class="color-chng">StudentPortal</span>
         </a>
         <nav class="nav-links">
-            <a href="/home" class="nav-link">Home</a>
+          <a href="/home" class="nav-link">Home</a>
         </nav>
-    </header>
-    <section class="hero">
+      </header>
+      <section class="hero">
         <div class="auth-container">
-            <div class="auth-card">
-                <h2>Sign Up</h2>
-                <form id="signupForm">
-                    <div class="form-group">
-                        <label for="signup-name">Full Name</label>
-                        <input type="text" id="signup-name" class="form-control" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-username">Username</label>
-                        <input type="text" id="signup-username" class="form-control" placeholder="Choose a username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-email">Email</label>
-                        <input type="email" id="signup-email" class="form-control" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-age">Age</label>
-                        <input type="number" id="signup-age" class="form-control" placeholder="Enter your age" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-courses">Courses</label>
-                        <input type="text" id="signup-courses" class="form-control" placeholder="Enter courses (comma-separated)" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-password">Password</label>
-                        <div class="password-wrapper">
-                            <input type="password" id="signup-password" class="form-control" placeholder="Create a password" required>
-                            <span class="toggle-password" data-target="signup-password">👁️</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="signup-confirm">Confirm Password</label>
-                        <div class="password-wrapper">
-                            <input type="password" id="signup-confirm" class="form-control" placeholder="Confirm your password" required>
-                            <span class="toggle-password" data-target="signup-confirm">👁️</span>
-                        </div>
-                    </div>
-                    <div id="signup-error" style="color: red; margin-top: 0.5rem; display: none;"></div>
-                    <button type="submit" class="btn btn-primary btn-block">Create Account</button>
-                </form>
-                <div class="auth-footer">
-                    Already have an account? <a href="/login">Login here</a>
+          <div class="auth-card">
+            <h2>Sign Up</h2>
+            <form id="signupFormPart1">
+              <div class="form-group">
+                <label for="signup-name">Full Name</label>
+                <input
+                  type="text"
+                  id="signup-name"
+                  class="form-control"
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="signup-username">Username</label>
+                <input
+                  type="text"
+                  id="signup-username"
+                  class="form-control"
+                  placeholder="Choose a username"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="signup-email">Email</label>
+                <input
+                  type="email"
+                  id="signup-email"
+                  class="form-control"
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="signup-age">Age</label>
+                <input
+                  type="number"
+                  id="signup-age"
+                  class="form-control"
+                  placeholder="Enter your age"
+                  required
+                />
+              </div>
+            </form>
+          </div>
+          <div class="auth-card float">
+            <form id="signupFormPart2">
+              <div class="form-group disapper">
+                <label for="signup-courses">Course</label>
+                <select id="signup-courses" class="form-control" required>
+                  <option value="" disabled selected>Select a course</option>
+                  <option value="Software Development">Software Development</option>
+                  <option value="Data Science">Data Science</option>
+                  <option value="Web Development">Web Development</option>
+                  <option value="Machine Learning">Machine Learning</option>
+                  <option value="Cybersecurity">Cybersecurity</option>
+                  <option value="Cloud Computing">Cloud Computing</option>
+                  <option value="Mobile App Development">Mobile App Development</option>
+                  <option value="Artificial Intelligence">Artificial Intelligence</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="signup-password">Password</label>
+                <div class="password-wrapper">
+                  <input
+                    type="password"
+                    id="signup-password"
+                    class="form-control"
+                    placeholder="Create a password"
+                    required
+                  />
+                  <span class="toggle-password" data-target="signup-password">👁️</span>
                 </div>
+              </div>
+              <div class="form-group">
+                <label for="signup-confirm">Confirm Password</label>
+                <div class="password-wrapper">
+                  <input
+                    type="password"
+                    id="signup-confirm"
+                    class="form-control form-control-spc"
+                    placeholder="Confirm your password"
+                    required
+                  />
+                  <span class="toggle-password" data-target="signup-confirm">👁️</span>
+                </div>
+              </div>
+              <div id="signup-error" style="color: red; margin-top: 0.5rem; display: none"></div>
+              <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+            </form>
+            <div class="auth-footer">
+              Already have an account? <a href="/login">Login here</a>
             </div>
+          </div>
         </div>
-    </section>
-</div>
-<footer>
-    <p>&copy; 2025 StudentPortal. All rights reserved.</p>
-</footer>
-<script src="/js/signup.js"></script>
-</body>
+      </section>
+    </div>
+    <footer>
+      <p>&copy; 2025 StudentPortal. All rights reserved.</p>
+    </footer>
+    <script src="/js/signup.js"></script>
+  </body>
 </html>

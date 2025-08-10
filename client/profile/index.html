@@ -1,36 +1,245 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/x-icon" href="/assert/favicon.ico/favicon.png">
-        <title>StudentPortal - Profile</title>
-        <link rel="stylesheet" href="/css/style.css">
-    </head>
-    <body>
-        <main class="container">
-            <header>
-                <a href="/profile" class="logo">
-                    <span class="logo-icon">S</span>
-                    <span>StudentPortal</span>
-                </a>
-                <nav class="nav-links">
-                    <a href="/" class="nav-link">Home</a>
-                    <a href="/login" class="nav-link">Logout</a>
-                </nav>
-            </header>
-            <section class="hero">
-                <h1>Your Profile</h1>
-                <div id="profileData" class="auth-card">
-                    <h2>Student Information</h2>
-                    <div id="student-info"></div>
-                    <button class="btn btn-primary btn-block" onclick="logout()">Logout</button>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Profile</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="/assert/favicon.ico/favicon.png"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header>
+        <a href="/" class="logo">
+          <span class="logo-icon">S</span>
+          Your Profile
+        </a>
+        <div class="nav-links">
+          <a href="/" class="nav-link">Home</a>
+          <a href="#" id="logoutBtn" class="nav-link">Logout</a>
+        </div>
+      </header>
+
+      <div class="flex flex-col lg:flex-row gap-8">
+        <!-- Left Sidebar - Profile Info -->
+        <div class="w-full lg:w-1/3">
+          <div class="bg-white rounded-xl shadow-md p-6 sticky top-6">
+            <!-- Profile Picture Upload -->
+            <div class="flex flex-col items-center mb-4">
+              <div
+                class="profile-pic-upload bg-indigo-100 mb-4 flex items-center justify-center"
+              >
+                <img
+                  id="profileImage"
+                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80"
+                  alt="Profile"
+                />
+                <input type="file" id="profileUpload" accept="image/*" />
+                <div class="edit-icon">Camera</div>
+              </div>
+              <h2 id="name" class="text-2xl font-bold text-gray-800"></h2>
+              <p id="username" class="text-gray-600 mb-2"></p>
+              <p id="studentId" class="text-gray-600 mb-2"></p>
+              <div id="coursesTags" class="flex flex-wrap gap-2"></div>
+            </div>
+
+            <!-- Personal Information -->
+            <div class="space-y-4" id="student-info">
+            </div>
+
+            <!-- Academic Progress -->
+            <div>
+              <h3 class="text-lg font-semibold text-gray-700 mb-2">
+                Academic Progress
+              </h3>
+              <div class="space-y-3">
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-gray-600">Degree Completion</span>
+                    <span class="font-medium">68%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 68%"></div>
+                  </div>
                 </div>
-            </section>
-            <footer>
-                <p>&copy; 2025 StudentPortal. All rights reserved.</p>
-            </footer>
-        </main>
-        <script src="/js/profile.js"></script>
-    </body>
-    </html>
+                <div>
+                  <div class="flex justify-between mb-1">
+                    <span class="text-gray-600">Current Semester</span>
+                    <span class="font-medium">42%</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width: 42%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+              <h3 class="text-lg font-semibold text-gray-700 mb-2">
+                Quick Links
+              </h3>
+              <div class="grid grid-cols-2 gap-2">
+                <a
+                  href="/profile"
+                  class="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg flex items-center transition"
+                >
+                  [Book] Library
+                </a>
+                <a
+                  href="/profile"
+                  class="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg flex items-center transition"
+                >
+                  [Calendar] Schedule
+                </a>
+                <a
+                  href="/profile"
+                  class="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg flex items-center transition"
+                >
+                  [Invoice] Finances
+                </a>
+                <a
+                  href="/profile"
+                  class="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg flex items-center transition"
+                >
+                  [Graduation] Graduation
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="w-full lg:w-2/3 space-y-8">
+          <!-- Welcome Banner -->
+          <div class="bg-gradient-to-r rounded-xl p-6 text-white">
+            <h2 id="welcomeMessage" class="text-2xl font-bold mb-2"></h2>
+            <p class="mb-4">
+              You have 3 upcoming assignments and 1 new message from your
+              instructor.
+            </p>
+            <button
+              class="bg-white text-indigo-600 px-4 py-2 rounded-lg font-medium transition"
+            >
+              View Notifications
+            </button>
+          </div>
+
+          <!-- Current Courses -->
+          <div class="bg-white rounded-xl shadow-md p-6">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-xl font-bold text-gray-800">Current Courses</h2>
+              <button class="text-indigo-600 hover:text-indigo-800 transition">
+                [+] Add Course
+              </button>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4" id="coursesContainer">
+            </div>
+          </div>
+
+          <!-- Upcoming Assignments -->
+          <div class="bg-white rounded-xl shadow-md p-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-6">
+              Upcoming Assignments
+            </h2>
+            <div class="space-y-4">
+              <div
+                class="border-l-4 border-indigo-500 pl-4 py-2 bg-indigo-50 rounded-r"
+              >
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-medium">Data Structures Project</h3>
+                    <p class="text-sm text-gray-600">CS 301 - Due in 3 days</p>
+                  </div>
+                  <span
+                    class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded"
+                    >High Priority</span
+                  >
+                </div>
+              </div>
+              <div
+                class="border-l-4 border-yellow-500 pl-4 py-2 bg-yellow-50 rounded-r"
+              >
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-medium">Database Design Assignment</h3>
+                    <p class="text-sm text-gray-600">CS 305 - Due in 5 days</p>
+                  </div>
+                  <span
+                    class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded"
+                    >Medium Priority</span
+                  >
+                </div>
+              </div>
+              <div
+                class="border-l-4 border-green-500 pl-4 py-2 bg-green-50 rounded-r"
+              >
+                <div class="flex justify-between items-start">
+                  <div>
+                    <h3 class="font-medium ">Linear Algebra Quiz</h3>
+                    <p class="text-sm text-gray-600">
+                      MATH 210 - Due in 7 days
+                    </p>
+                  </div>
+                  <span
+                    class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded"
+                    >Low Priority</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Activity -->
+          <div class="bg-white rounded-xl shadow-md p-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-6">
+              Recent Activity
+            </h2>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <div class="red-sp">
+                  [Book Open]
+                </div>
+                <div>
+                  <p class="font-medium">Submitted "Algorithms Assignment 3"</p>
+                  <p class="text-sm text-gray-600">Yesterday at 4:23 PM</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="blue">
+                  [Check]
+                </div>
+                <div>
+                  <p class="font-medium">
+                    Received grade for "Database Midterm" - 92%
+                  </p>
+                  <p class="text-sm text-gray-600">2 days ago</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <div class="green">
+                  [Comment]
+                </div>
+                <div>
+                  <p class="font-medium">
+                    New message from Prof. Smith about project
+                  </p>
+                  <p class="text-sm text-gray-600">3 days ago</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>© 2025 StudentPortal. All rights reserved.</footer>
+    </div>
+
+    <script src="/js/profile.js"></script>
+  </body>
+</html>
