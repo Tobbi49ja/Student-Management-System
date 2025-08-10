@@ -7,7 +7,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
 
   try {
     // Send POST request to login
-    const response = await fetch('http://localhost:5000/students/login', {
+    const response = await fetch('http://localhost:8000/students/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ identifier, password })
@@ -29,4 +29,15 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     errorMessage.style.display = 'block';
     errorMessage.textContent = 'Error logging in. Please try again.';
   }
+});
+
+// Password toggle functionality
+document.querySelectorAll('.toggle-password').forEach(toggle => {
+  toggle.addEventListener('click', function() {
+    const targetId = this.getAttribute('data-target');
+    const input = document.getElementById(targetId);
+    const isPassword = input.type === 'password';
+    input.type = isPassword ? 'text' : 'password';
+    this.textContent = isPassword ? '🙈' : '👁️';
+  });
 });

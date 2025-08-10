@@ -7,12 +7,12 @@
     <title>StudentPortal - Login</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body class="loginbg">
     <main class="container">
         <header>
             <a href="/login" class="logo">
                 <span class="logo-icon">S</span>
-                <span>StudentPortal</span>
+                <span class="color-chng">StudentPortal</span>
             </a>
             <nav class="nav-links">
                 <a href="/" class="nav-link">Home</a>
@@ -21,7 +21,7 @@
         <section class="hero">
             <h1>Welcome Back, Student!</h1>
             <p>Access your courses, assignments, and resources with your student account.</p>
-            <div class="auth-container">
+            <div class="auth-container center">
                 <div class="auth-card">
                     <h2>Login</h2>
                     <form id="loginForm">
@@ -31,12 +31,29 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                            <div class="password-wrapper">
+                                <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                                <span class="toggle-password" data-target="password">👁️</span>
+                            </div>
                         </div>
                         <div id="error-message" style="color: red; margin-top: 0.5rem; display: none;"></div>
                         <button type="submit" class="btn btn-primary btn-block">Login</button>
                     </form>
                     
+                    <div class="divider">
+                        <span class="divider-text">OR</span>
+                    </div>
+                    
+                    <div class="social-login">
+                        <button class="social-btn">
+                            <span class="social-icon">G</span>
+                            Google
+                        </button>
+                        <button class="social-btn">
+                            <span class="social-icon">M</span>
+                            Microsoft
+                        </button>
+                    </div>
                     <div class="auth-footer">
                         Don't have an account? <a href="/signup">Sign Up here</a>
                     </div>
