@@ -6,8 +6,8 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
   const errorMessage = document.getElementById('error-message');
 
   try {
-    // Send POST request to login
-    const response = await fetch('http://localhost:8000/students/login', {
+    const API_BASE = window.location.origin;
+    const response = await fetch(`${API_BASE}/students/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ identifier, password })
@@ -16,9 +16,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     const data = await response.json();
 
     if (response.ok) {
-      // Store JWT token in localStorage
       localStorage.setItem('token', data.token);
-      // Redirect to the profile page
       window.location.href = '/profile';
     } else {
       errorMessage.style.display = 'block';
@@ -31,13 +29,11 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
   }
 });
 
-// Password toggle functionality
 document.querySelectorAll('.toggle-password').forEach(toggle => {
   toggle.addEventListener('click', function() {
     const targetId = this.getAttribute('data-target');
     const input = document.getElementById(targetId);
-    const isPassword = input.type === 'password';
-    input.type = isPassword ? 'text' : 'password';
-    this.textContent = isPassword ? '🙈' : '👁️';
+    input.type = input.type === 'password' ? 'text' : 'password';
+    this.textContent = input.type === 'password' ? '👁️' : '🙈';
   });
 });
