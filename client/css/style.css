@@ -909,9 +909,6 @@ h2 {
   }
 }
 @media(max-width: 320px){
-  .color-chng{
-    font-size: 20px;
-  }
   .toggle-password{
     right: 0;
   }
