@@ -11,25 +11,32 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../client')));
 
-// Primary connection based on DB_ENV (used for regular operations)
-const dbUri = process.env.DB_ENV === 'atlas' ? process.env.ATLAS_URI : process.env.LOCAL_URI;
+// Detect environment
+const isProduction = process.env.NODE_ENV === 'production';
+
+// Pick DB based on environment
+const dbUri = isProduction ? process.env.ATLAS_URI : process.env.LOCAL_URI;
 const primaryConnection = mongoose.createConnection(dbUri, { maxPoolSize: 10 });
+
 primaryConnection
   .asPromise()
-  .then(() => console.log(`Connected to ${process.env.DB_ENV === 'atlas' ? 'MongoDB Atlas' : 'Local MongoDB'}`))
-  .catch((err) => console.error(`Could not connect to ${process.env.DB_ENV === 'atlas' ? 'MongoDB Atlas' : 'Local MongoDB'}:`, err.message, err));
+  .then(() => console.log(`Connected to ${isProduction ? 'MongoDB Atlas' : 'Local MongoDB'}`))
+  .catch((err) => console.error(`Could not connect to ${isProduction ? 'MongoDB Atlas' : 'Local MongoDB'}:`, err.message));
 
-// Secondary connection for syncing (always Atlas for local-to-cloud sync)
-const atlasConnection = process.env.DB_ENV === 'local' ? mongoose.createConnection(process.env.ATLAS_URI, { maxPoolSize: 10 }) : primaryConnection;
+// Always have an Atlas connection ready for sync (only relevant locally)
+const atlasConnection = isProduction
+  ? primaryConnection
+  : mongoose.createConnection(process.env.ATLAS_URI, { maxPoolSize: 10 });
+
 atlasConnection
   .asPromise()
   .then(() => console.log('Atlas connection ready for syncing'))
-  .catch((err) => console.error('Could not connect to MongoDB Atlas for syncing:', err.message, err));
+  .catch((err) => console.error('Could not connect to MongoDB Atlas for syncing:', err.message));
 
-// Make connections available to routes/controllers
+// Pass connections to routes
 app.locals.primaryConnection = primaryConnection;
 app.locals.atlasConnection = atlasConnection;
-app.locals.dbEnv = process.env.DB_ENV;
+app.locals.dbEnv = isProduction ? 'atlas' : 'local';
 
 // Routes
 app.use('/', apiRouter);
