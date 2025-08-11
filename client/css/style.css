@@ -414,6 +414,9 @@ footer {
 }
 
 @media(max-width:425px) {
+  .loginbg{
+    background-attachment: scroll;
+  }
   .auth-container {
     justify-content: center;
   }

@@ -104,4 +104,4 @@ document.getElementById('profileUpload').addEventListener('change', function(eve
 document.getElementById('logoutBtn').addEventListener('click', function() {
   localStorage.removeItem('token');
   window.location.href = '/login';
-});
+}); 
