@@ -61,13 +61,16 @@ document.getElementById('signupFormPart2').addEventListener('submit', async func
   }
 });
 
-// Capitalize first letter of each word in Full Name
+// Capitalize first letter of each word in Full Name, allowing spaces after first word
 document.getElementById('signup-name').addEventListener('input', function() {
-  const input = this.value.trim();
+  const input = this.value;
   if (input) {
     this.value = input
       .split(' ')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .map((word, index) => {
+        if (word.length === 0) return word; // Preserve empty spaces
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+      })
       .join(' ');
   }
 });
