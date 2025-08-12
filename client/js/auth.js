@@ -1,6 +1,12 @@
+// Force lowercase in identifier input
+document.getElementById('identifier').addEventListener('input', function() {
+  this.value = this.value.toLowerCase();
+});
+
 document.getElementById('loginForm').addEventListener('submit', async function(event) {
   event.preventDefault();
 
+  // Identifier will already be lowercase from the listener above
   const identifier = document.getElementById('identifier').value;
   const password = document.getElementById('password').value;
   const errorMessage = document.getElementById('error-message');

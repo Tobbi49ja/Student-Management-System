@@ -414,6 +414,22 @@ footer {
 }
 
 @media(max-width:425px) {
+  .loginbg::before{
+    filter: blur(1px) brightness(0.5);
+  }
+  .color-chng{
+    font-size: 16px;
+  }
+  .hero h1 {
+    font-size: 1.3rem;
+    color: whitesmoke;
+  }
+  .hero p{
+    font-weight: 600;
+  }
+  .nav-links{
+    font-size: 12px;
+  }
   .loginbg{
     background-attachment: scroll;
   }
@@ -901,7 +917,13 @@ h2 {
   }
 }
 @media (max-width: 375px){
-  .logo,.nav-link{
+  .color-chng{
+    font-size: 12px;
+  }
+  .hero h1 {
+    font-size: 1.4rem;
+  }
+  .logo{
     font-size: 1rem;
   }
   .password-wrapper{
@@ -912,6 +934,15 @@ h2 {
   }
 }
 @media(max-width: 320px){
+  .color-chng{
+    font-size: 12px;
+  }
+  .nav-links{
+    font-size: 10px;
+  }
+  .form-control{
+    font-size: 12px;
+  }
   .toggle-password{
     right: 0;
   }
