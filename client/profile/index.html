@@ -3,24 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Profile</title>
-    <link
-      rel="icon"
-      type="image/x-icon"
-      href="/assert/favicon.ico/favicon.png"
-    />
+    <link rel="icon" type="image/x-icon" href="/assert/favicon/favicon.png" />
     <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <title>Student Profile</title>
   </head>
   <body>
     <div class="container">
       <!-- Header -->
       <header>
-        <a href="/" class="logo">
-  
-          Your Profile
-        </a>
-        <div class="nav-links">
-          <a href="/" class="nav-link">Home</a>
+        <a href="/" class="logo">Your Profile</a>
+        <div class="nav-links" id="navLinks">
+          <a href="/admin" class="nav-link" id="adminLink" style="display: none;">Admin</a>
           <a href="#" id="logoutBtn" class="nav-link">Logout</a>
         </div>
       </header>
@@ -31,39 +25,31 @@
           <div class="bg-white rounded-xl shadow-md p-6 sticky top-6">
             <!-- Profile Picture Upload -->
             <div class="flex flex-col items-center mb-4">
-              <div
-                class="profile-pic-upload bg-indigo-100 mb-4 flex items-center justify-center"
-              >
-                <img
-                  id="profileImage"
-                  src="https://media.istockphoto.com/id/2227015783/photo/isolated-user-profile-identity-secured-by-a-shield-icon.webp?a=1&b=1&s=612x612&w=0&k=20&c=3_umNL-gKGVEpFGtXTIeKMBAF3Yzs0JmB64I4I5sHg4="
-                  alt="Profile"
-                />
+              <div class="profile-pic-upload bg-indigo-100 mb-4 flex items-center justify-center">
+                <img id="profileImage" src="https://media.istockphoto.com/id/2227015783/photo/isolated-user-profile-identity-secured-by-a-shield-icon.webp?a=1&b=1&s=612x612&w=0&k=20&c=3_umNL-gKGVEpFGtXTIeKMBAF3Yzs0JmB64I4I5sHg4=" alt="Profile" />
                 <input type="file" id="profileUpload" accept="image/*" />
                 <div class="edit-icon">Camera</div>
               </div>
-              <h2 id="name" class="text-2xl font-bold text-gray-800"></h2>
+              <h2 id="name" class="text-2xl font-bold text-gray-800 text-algn"></h2>
               <p id="username" class="text-gray-600 mb-2"></p>
               <p id="studentId" class="text-gray-600 mb-2"></p>
-              <div id="coursesTags" class="flex flex-wrap gap-2"></div>
+              <div id="coursesTags" class="flex flex-wrap gap-2 media-adjust-flex"></div>
+              <div id="adminIndicator" style="display: none;"><i class="fas fa-shield-alt"></i> Admin</div>
             </div>
 
             <!-- Personal Information -->
-            <div class="space-y-4" id="student-info">
-            </div>
+            <div class="space-y-4" id="student-info"></div>
 
             <!-- Academic Progress -->
-            <div>
-              <h3 class="text-lg font-semibold text-gray-700 mb-2">
-                Academic Progress
-              </h3>
+            <div class="media-adjust-academic-progress">
+              <h3 class="text-lg font-semibold text-gray-700 mb-2">Academic Progress</h3>
               <div class="space-y-3">
                 <div>
                   <div class="flex justify-between mb-1">
                     <span class="text-gray-600">Degree Completion</span>
                     <span class="font-medium">68%</span>
                   </div>
-                  <div class="progress-bar">
+                  <div class="progress-bar mb-5">
                     <div class="progress-fill" style="width: 68%"></div>
                   </div>
                 </div>
@@ -81,34 +67,12 @@
 
             <!-- Quick Links -->
             <div>
-              <h3 class="text-lg font-semibold text-gray-700 mb-2">
-                Quick Links
-              </h3>
+              <h3 class="text-lg font-semibold text-gray-700 mb-2">Quick Links</h3>
               <div class="grid grid-cols-2 gap-2">
-                <a
-                  href="/profile"
-                  class="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg flex items-center transition"
-                >
-                  [Book] Library
-                </a>
-                <a
-                  href="/profile"
-                  class="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg flex items-center transition"
-                >
-                  [Calendar] Schedule
-                </a>
-                <a
-                  href="/profile"
-                  class="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg flex items-center transition"
-                >
-                  [Invoice] Finances
-                </a>
-                <a
-                  href="/profile"
-                  class="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg flex items-center transition"
-                >
-                  [Graduation] Graduation
-                </a>
+                <a href="/profile" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg flex items-center transition">[Book] Library</a>
+                <a href="/profile" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg flex items-center transition">[Calendar] Schedule</a>
+                <a href="/profile" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg flex items-center transition">[Invoice] Finances</a>
+                <a href="/profile" class="bg-gray-100 hover:bg-gray-200 p-3 rounded-lg flex items-center transition">[Graduation] Graduation</a>
               </div>
             </div>
           </div>
@@ -117,79 +81,50 @@
         <!-- Main Content -->
         <div class="w-full lg:w-2/3 space-y-8">
           <!-- Welcome Banner -->
-          <div class="bg-gradient-to-r rounded-xl p-6 text-white">
+          <div class="bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl p-6 text-white">
             <h2 id="welcomeMessage" class="text-2xl font-bold mb-2"></h2>
-            <p class="mb-4">
-              You have 3 upcoming assignments and 1 new message from your
-              instructor.
-            </p>
-            <button
-              class="bg-white text-indigo-600 px-4 py-2 rounded-lg font-medium transition"
-            >
-              View Notifications
-            </button>
+            <p class="mb-4">You have 3 upcoming assignments and 1 new message from your instructor.</p>
+            <button class="bg-white text-indigo-600 px-4 py-2 rounded-lg font-medium transition">View Notifications</button>
           </div>
 
           <!-- Current Courses -->
           <div class="bg-white rounded-xl shadow-md p-6">
             <div class="flex justify-between items-center mb-6">
               <h2 class="text-xl font-bold text-gray-800">Current Courses</h2>
-              <button class="text-indigo-600 hover:text-indigo-800 transition">
-                [+] Add Course
-              </button>
+              <button id="addCourseBtn" class="btn btn-primary text-sm">+ Add Course</button>
             </div>
-            <div class="grid md:grid-cols-2 gap-4" id="coursesContainer">
-            </div>
+            <div class="grid md:grid-cols-2 gap-4" id="coursesContainer"></div>
           </div>
 
           <!-- Upcoming Assignments -->
           <div class="bg-white rounded-xl shadow-md p-6">
-            <h2 class="text-xl font-bold text-gray-800 mb-6">
-              Upcoming Assignments
-            </h2>
+            <h2 class="text-xl font-bold text-gray-800 mb-6">Upcoming Assignments</h2>
             <div class="space-y-4">
-              <div
-                class="border-l-4 border-indigo-500 pl-4 py-2 bg-indigo-50 rounded-r"
-              >
+              <div class="border-l-4 border-indigo-500 pl-4 py-2 bg-indigo-50 rounded-r">
                 <div class="flex justify-between items-start">
                   <div>
                     <h3 class="font-medium">Data Structures Project</h3>
                     <p class="text-sm text-gray-600">CS 301 - Due in 3 days</p>
                   </div>
-                  <span
-                    class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded"
-                    >High Priority</span
-                  >
+                  <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded">High Priority</span>
                 </div>
               </div>
-              <div
-                class="border-l-4 border-yellow-500 pl-4 py-2 bg-yellow-50 rounded-r"
-              >
+              <div class="border-l-4 border-yellow-500 pl-4 py-2 bg-yellow-50 rounded-r">
                 <div class="flex justify-between items-start">
                   <div>
                     <h3 class="font-medium">Database Design Assignment</h3>
                     <p class="text-sm text-gray-600">CS 305 - Due in 5 days</p>
                   </div>
-                  <span
-                    class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded"
-                    >Medium Priority</span
-                  >
+                  <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded">Medium Priority</span>
                 </div>
               </div>
-              <div
-                class="border-l-4 border-green-500 pl-4 py-2 bg-green-50 rounded-r"
-              >
+              <div class="border-l-4 border-green-500 pl-4 py-2 bg-green-50 rounded-r">
                 <div class="flex justify-between items-start">
                   <div>
-                    <h3 class="font-medium ">Linear Algebra Quiz</h3>
-                    <p class="text-sm text-gray-600">
-                      MATH 210 - Due in 7 days
-                    </p>
+                    <h3 class="font-medium">Linear Algebra Quiz</h3>
+                    <p class="text-sm text-gray-600">MATH 210 - Due in 7 days</p>
                   </div>
-                  <span
-                    class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded"
-                    >Low Priority</span
-                  >
+                  <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded">Low Priority</span>
                 </div>
               </div>
             </div>
@@ -197,38 +132,26 @@
 
           <!-- Recent Activity -->
           <div class="bg-white rounded-xl shadow-md p-6">
-            <h2 class="text-xl font-bold text-gray-800 mb-6">
-              Recent Activity
-            </h2>
+            <h2 class="text-xl font-bold text-gray-800 mb-6">Recent Activity</h2>
             <div class="space-y-4">
               <div class="flex items-start space-x-3">
-                <div class="red-sp">
-                  [Book Open]
-                </div>
+                <div class="red-sp">[Book Open]</div>
                 <div>
                   <p class="font-medium">Submitted "Algorithms Assignment 3"</p>
                   <p class="text-sm text-gray-600">Yesterday at 4:23 PM</p>
                 </div>
               </div>
               <div class="flex items-start space-x-3">
-                <div class="blue">
-                  [Check]
-                </div>
+                <div class="blue">[Check]</div>
                 <div>
-                  <p class="font-medium">
-                    Received grade for "Database Midterm" - 92%
-                  </p>
+                  <p class="font-medium">Received grade for "Database Midterm" - 92%</p>
                   <p class="text-sm text-gray-600">2 days ago</p>
                 </div>
               </div>
               <div class="flex items-start space-x-3">
-                <div class="green">
-                  [Comment]
-                </div>
+                <div class="green">[Comment]</div>
                 <div>
-                  <p class="font-medium">
-                    New message from Prof. Smith about project
-                  </p>
+                  <p class="font-medium">New message from Prof. Smith about project</p>
                   <p class="text-sm text-gray-600">3 days ago</p>
                 </div>
               </div>
@@ -238,6 +161,83 @@
       </div>
 
       <footer>© 2025 StudentPortal. All rights reserved.</footer>
+    </div>
+
+    <!-- Add Course Modal -->
+    <div id="addCourseModal" class="chgpassmodel-box">
+      <div class="chgpassmodel-card">
+        <h2 class="mb-6">Add Course</h2>
+        <!-- <input id="newCourseInput" type="text" placeholder="Course name" class="form-control mb-6"> -->
+        <select name="" id="newCourseInput" class="form-control mb-6">
+                  <option value="" disabled selected>Select a course</option>
+                  <option value="Software Development">Software Development</option>
+                  <option value="Data Science">Data Science</option>
+                  <option value="CodingForKIds">CodingForKids</option>
+                  <option value="Web Development">Web Development</option>
+                  <option value="Basic Computing">Basic Computing</option>
+                  <option value="Machine Learning">Machine Learning</option>
+                  <option value="Cybersecurity">Cybersecurity</option>
+                  <option value="Cloud Computing">Cloud Computing</option>
+                  <option value="Mobile App Development">Mobile App Development</option>
+                  <option value="Artificial Intelligence">Artificial Intelligence</option>
+        </select>
+        <button id="submitAddCourse" class="btn btn-primary">Add</button>
+        <button id="cancelAddCourse" class="btn btn-outline ml-2">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="chgpassmodel-box" >
+      <div class="chgpassmodel-card">
+        <h2>Edit Profile</h2>
+        <div class="form-group">
+          <label class="mt-2 ">Name</label>
+          <input id="editName" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Username</label>
+          <input id="editUsername" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input id="editEmail" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Age</label>
+          <input id="editAge" type="number" class="form-control">
+        </div>
+        <button id="submitEditProfile" class="btn btn-primary">Update</button>
+        <button id="cancelEditProfile" class="btn btn-outline ml-2">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Change Password Modal -->
+    <div id="changePasswordModal" class="chgpassmodel-box">
+      <div class="chgpassmodel-card">
+        <h2>Change Password</h2>
+        <div class="form-group password-wrapper">
+          <label class="mt-2">Old Password</label>
+          <input id="oldPassword" type="password" class="form-control">
+          <i id="toggleOldPassword" class="fas fa-eye toggle-password"></i>
+        </div>
+        <div class="form-group password-wrapper">
+          <label>New Password</label>
+          <input id="newPassword" type="password" class="form-control">
+          <i id="toggleNewPassword" class="fas fa-eye toggle-password"></i>
+        </div>
+        <button id="submitChangePassword" class="btn btn-primary">Change</button>
+        <button id="cancelChangePassword" class="btn btn-outline ml-2">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Delete Course Confirmation Modal -->
+    <div id="deleteCourseModal" class="chgpassmodel-box">
+      <div  class="chgpassmodel-card light">
+        <h2 class="mb-6">Confirm Delete</h2>
+        <p id="deleteCourseName"></p>
+        <button id="confirmDeleteCourse" class="btn btn-danger mt-2">YES</button>
+        <button id="cancelDeleteCourse" class="btn btn-outline ml-2">Cancel</button>
+      </div>
     </div>
 
     <script src="/js/profile.js"></script>

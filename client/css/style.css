@@ -124,10 +124,8 @@ header {
   color: var(--primary);
 }
 
-.red {
-  background-color: red;
-  color: white;
-  transition: 0.3s;
+.text-decoration-none {
+  text-decoration: none;
 }
 
 .red:hover {
@@ -253,7 +251,22 @@ header {
   font-size: 1rem;
   transition: border-color 0.3s;
 }
-
+.light{
+    color: var(--light);
+}
+.form-control-2{
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #334155;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--darker);
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+.form-control-2:focus{
+  outline: none;
+}
 select option {
   background-color: rgba(0, 0, 0, 0.7);
   transition: .5s;
@@ -278,11 +291,43 @@ select option {
   color: var(--gray);
   font-size: 1.2rem;
 }
-
+.border-red{
+  border: 1px solid red;
+}
+.float-rigt{
+  float: right;
+}
+.chgpassmodel-box{
+  display:none; 
+  position:fixed; 
+  top:0; 
+  left:0; 
+  width:100%; 
+  height:100%; 
+  background:rgba(0,0,0,0.6); 
+  z-index:1000; 
+  justify-content:center; 
+  align-items:center;
+}
+.chgpassmodel-card{
+  background: rgba(26, 23, 23, 0.9); 
+  padding:20px; 
+  width:400px; 
+  border-radius:8px;
+}
+.chgpassmodel-card-2{
+  background: rgb(253, 251, 251, 0.9); 
+  padding:20px; 
+  width:400px; 
+  border-radius:8px;
+}
 .toggle-password:hover {
   color: var(--primary);
 }
+.fa-eye,.fa-eye-slash{
+margin-top: 1rem;
 
+}
 .forgot-password {
   display: block;
   text-align: right;
@@ -291,7 +336,7 @@ select option {
   text-decoration: none;
   font-size: 0.9rem;
 }
-
+ 
 .forgot-password:hover {
   color: var(--primary);
 }
@@ -330,6 +375,7 @@ select option {
 .green{
   color: #16a34a;
 }
+
 .social-login {
   display: flex;
   gap: 1rem;
@@ -448,6 +494,21 @@ footer {
   .course-card{
     width: 300px;
   }
+  .media-adjust-flex{
+
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .media-flex-card{
+    flex-grow: 1;
+  }
+  .media-adjust-academic-progress{
+    display: none;
+  }
+  .text-algn{
+    text-align: center;
+  }
+
   
 }
 
@@ -522,7 +583,16 @@ footer {
   cursor: pointer;
   transition: all 0.3s ease;
 }
+.hidden { display: none; }
+.btn-danger {
+  background-color: red;
+  color: white;
+}
 
+.btn-danger:hover {
+  background-color: #8b0000;
+  color: #f8fafc;
+}
 .profile-pic-upload:hover {
   transform: scale(1.05);
 }
@@ -553,11 +623,27 @@ footer {
 .bg-indigo-100 {
   background-color: #e0e7ff;
 }
-
+.mt-2{
+  margin-top: 2rem;
+}
+.ml-2{
+  margin-left: 2rem;
+}
 .mb-4 {
   margin-bottom: 1rem;
 }
-
+.mb-5{
+  margin-bottom: 1.2rem;
+}
+.mb-7{
+  margin-bottom: 3rem;
+}
+.mb-8{
+  margin-bottom: 5rem;
+}
+.ml-ml{
+  margin-left: 12px;
+}
 .items-center {
   align-items: center;
 }
@@ -893,6 +979,7 @@ h2 {
 .mb-6 {
   margin-bottom: 1.5rem;
 }
+.mb
 
 .items-start {
   align-items: flex-start;
@@ -960,6 +1047,71 @@ h2 {
   }
 }
 
+@media (max-width: 425px) {
+  .coursesContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    padding: 0 0.5rem; 
+  }
+
+  .course-card {
+    width: 100%;
+    height: 130px;
+    box-sizing: border-box;
+  }
+
+  .progress-bar {
+    position: relative;
+    top: 2rem;
+  
+  }
+  .media-b{
+    margin-top: 1rem;
+  }
+  .media-font{
+    font-size: 14px;
+  }
+  .delete-course-btn {
+    margin-left: 0.5rem;
+  }
+  .md\:grid-cols-2 {
+  grid-template-columns: 1fr; 
+}
+.media-adjustment{
+  margin-left: 1rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.media-adjust-mb-5{
+  margin-bottom: 1.5rem;
+}
+table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  tbody{
+    gap: 3rem;
+  }
+
+}
+@media(max-width: 375px){
+  .media-adjustment{
+    margin-left: 0;
+    margin-top: 0;
+    margin-top: 1rem;
+  }
+}
+@media(max-width: 320px){
+  .media-font{
+    font-size: 12px;
+  }
+  .progress-bar{
+    top: 1.5rem;
+  }
+}
 .gap-4 {
   gap: 1rem;
 }

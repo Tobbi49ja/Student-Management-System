@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const studentsRouter = require('./students');
+const studentsController = require('../controllers/studentsController');
 
 const router = express.Router();
 
@@ -8,16 +9,21 @@ const router = express.Router();
 router.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, '../../client', 'Login', 'index.html'));
 });
-router.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../../client', 'home', 'index.html'));
-});
 
 router.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, '../../client', 'SignUp', 'index.html'));
 });
 
-router.get('/profile', (req, res) => {
+router.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../client', 'home', 'index.html'));
+});
+
+router.get('/profile', studentsController.verifyToken, (req, res) => {
   res.sendFile(path.join(__dirname, '../../client', 'Profile', 'index.html'));
+});
+
+router.get('/admin', studentsController.verifyToken, studentsController.verifyAdmin, (req, res) => {
+  res.sendFile(path.join(__dirname, '../../client', 'Admin', 'index.html'));
 });
 
 // API Routes

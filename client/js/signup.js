@@ -1,4 +1,4 @@
-document.getElementById('signupFormPart2').addEventListener('submit', async function(event) {
+document.getElementById('signupFormPart2').addEventListener('submit', async function (event) {
   event.preventDefault();
 
   const nameInput = document.getElementById('signup-name');
@@ -11,9 +11,10 @@ document.getElementById('signupFormPart2').addEventListener('submit', async func
   const errorMessage = document.getElementById('signup-error');
 
   const name = nameInput.value.trim();
-  const username = usernameInput.value.trim();
+  const username = usernameInput.value.trim().toLowerCase();
   const email = emailInput.value.trim().toLowerCase();
 
+  // Client-side validation
   if (!name || !username || !email || !age || !course || !password || !confirmPassword) {
     errorMessage.style.display = 'block';
     errorMessage.textContent = 'Please fill all fields';
@@ -38,16 +39,20 @@ document.getElementById('signupFormPart2').addEventListener('submit', async func
     const response = await fetch(`${API_BASE}/students`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, username, email, age, courses: [course], password })
+      body: JSON.stringify({ name, username, email, age: parseInt(age), courses: [course], password, confirmPassword }),
     });
 
     const data = await response.json();
 
     if (response.ok) {
+      // alert('Account created successfully! Please log in.');
       window.location.href = '/login';
     } else {
       errorMessage.style.display = 'block';
       errorMessage.textContent = data.message || 'Error creating account';
+      if (response.status === 503) {
+        errorMessage.textContent = 'Database unavailable. Please try again later.';
+      }
     }
   } catch (error) {
     console.error('Error signing up:', error);
@@ -56,25 +61,25 @@ document.getElementById('signupFormPart2').addEventListener('submit', async func
   }
 });
 
-document.getElementById('signup-name').addEventListener('input', function() {
+document.getElementById('signup-name').addEventListener('input', function () {
   const input = this.value;
   if (input) {
     this.value = input
       .split(' ')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
       .join(' ');
   }
 });
 
-document.getElementById('signup-username').addEventListener('input', function() {
+document.getElementById('signup-username').addEventListener('input', function () {
   const input = this.value.trim();
   if (input) {
     this.value = input.charAt(0).toLowerCase() + input.slice(1);
   }
 });
 
-document.querySelectorAll('.toggle-password').forEach(toggle => {
-  toggle.addEventListener('click', function() {
+document.querySelectorAll('.toggle-password').forEach((toggle) => {
+  toggle.addEventListener('click', function () {
     const targetId = this.getAttribute('data-target');
     const input = document.getElementById(targetId);
     input.type = input.type === 'password' ? 'text' : 'password';

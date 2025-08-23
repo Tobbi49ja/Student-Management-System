@@ -6,7 +6,6 @@ document.getElementById('identifier').addEventListener('input', function() {
 document.getElementById('loginForm').addEventListener('submit', async function(event) {
   event.preventDefault();
 
-  // Identifier will already be lowercase from the listener above
   const identifier = document.getElementById('identifier').value;
   const password = document.getElementById('password').value;
   const errorMessage = document.getElementById('error-message');
@@ -23,10 +22,10 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
 
     if (response.ok) {
       localStorage.setItem('token', data.token);
-      window.location.href = '/profile';
+      window.location.href = data.redirect || '/profile'; // Use redirect from response
     } else {
       errorMessage.style.display = 'block';
-      errorMessage.textContent = 'Incorrect credentials';
+      errorMessage.textContent = data.message || 'Incorrect credentials';
     }
   } catch (error) {
     console.error('Error logging in:', error);
