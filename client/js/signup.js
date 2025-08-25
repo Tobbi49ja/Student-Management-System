@@ -1,4 +1,4 @@
-document.getElementById('signupFormPart2').addEventListener('submit', async function(event) {
+document.getElementById('signupFormPart2').addEventListener('submit', async function (event) {
   event.preventDefault();
 
   const nameInput = document.getElementById('signup-name');
@@ -10,19 +10,17 @@ document.getElementById('signupFormPart2').addEventListener('submit', async func
   const confirmPassword = document.getElementById('signup-confirm').value;
   const errorMessage = document.getElementById('signup-error');
 
-  // Get sanitized values
   const name = nameInput.value.trim();
-  const username = usernameInput.value.trim();
+  const username = usernameInput.value.trim().toLowerCase();
   const email = emailInput.value.trim().toLowerCase();
 
-  // Validate inputs
+  // Client-side validation
   if (!name || !username || !email || !age || !course || !password || !confirmPassword) {
     errorMessage.style.display = 'block';
     errorMessage.textContent = 'Please fill all fields';
     return;
   }
 
-  // Validate email format
   const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
   if (!emailRegex.test(email)) {
     errorMessage.style.display = 'block';
@@ -37,22 +35,24 @@ document.getElementById('signupFormPart2').addEventListener('submit', async func
   }
 
   try {
-    const response = await fetch('http://localhost:8000/students', {
+    const API_BASE = window.location.origin;
+    const response = await fetch(`${API_BASE}/students`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, username, email, age, courses: [course], password })
+      body: JSON.stringify({ name, username, email, age: parseInt(age), courses: [course], password, confirmPassword }),
     });
 
     const data = await response.json();
 
     if (response.ok) {
-      // Redirect to login page after successful signup
+      // alert('Account created successfully! Please log in.');
       window.location.href = '/login';
     } else {
       errorMessage.style.display = 'block';
-      errorMessage.textContent = data.message === 'Email already exists' 
-        ? 'This email is already registered. Please use a different email.'
-        : data.message || 'Error creating account';
+      errorMessage.textContent = data.message || 'Error creating account';
+      if (response.status === 503) {
+        errorMessage.textContent = 'Database unavailable. Please try again later.';
+      }
     }
   } catch (error) {
     console.error('Error signing up:', error);
@@ -61,35 +61,28 @@ document.getElementById('signupFormPart2').addEventListener('submit', async func
   }
 });
 
-// Capitalize first letter of each word in Full Name, allowing spaces after first word
-document.getElementById('signup-name').addEventListener('input', function() {
+document.getElementById('signup-name').addEventListener('input', function () {
   const input = this.value;
   if (input) {
     this.value = input
       .split(' ')
-      .map((word, index) => {
-        if (word.length === 0) return word; // Preserve empty spaces
-        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-      })
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
       .join(' ');
   }
 });
 
-// Ensure username starts with lowercase
-document.getElementById('signup-username').addEventListener('input', function() {
+document.getElementById('signup-username').addEventListener('input', function () {
   const input = this.value.trim();
   if (input) {
     this.value = input.charAt(0).toLowerCase() + input.slice(1);
   }
 });
 
-// Password toggle functionality
-document.querySelectorAll('.toggle-password').forEach(toggle => {
-  toggle.addEventListener('click', function() {
+document.querySelectorAll('.toggle-password').forEach((toggle) => {
+  toggle.addEventListener('click', function () {
     const targetId = this.getAttribute('data-target');
     const input = document.getElementById(targetId);
-    const isPassword = input.type === 'password';
-    input.type = isPassword ? 'text' : 'password';
-    this.textContent = isPassword ? '🙈' : '👁️';
+    input.type = input.type === 'password' ? 'text' : 'password';
+    this.textContent = input.type === 'password' ? '👁️' : '🙈';
   });
 });
